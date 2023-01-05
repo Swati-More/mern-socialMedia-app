@@ -189,12 +189,12 @@ const Post = ({
           {comments.length > 0 ? (
             comments.map((item) => (
               <CommentCard
-                userId={item.user._id}
-                name={item.user.name}
-                avatar={item.user.avatar.url}
-                comment={item.comment}
-                commentId={item._id}
-                key={item._id}
+                userId={item.user?._id}
+                name={item.user?.name}
+                avatar={item.user?.avatar.url}
+                comment={item?.comment}
+                commentId={item?._id}
+                key={item?._id}
                 postId={postId}
                 isAccount={isAccount}
               />

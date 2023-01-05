@@ -306,7 +306,7 @@ export const getUserPosts = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "userPostsFailure",
-      payload: error.response.data.message,
+      payload: error.response?.data.message,
     });
   }
 };
