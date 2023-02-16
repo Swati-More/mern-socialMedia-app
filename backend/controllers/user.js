@@ -110,7 +110,7 @@ exports.logout = async (req, res) => {
 exports.followUser = async (req, res) => {
   try {
     const userToFollow = await User.findById(req.params.id);
-    const loggedInUser = await User.findById(req.user._id);
+    const loggedInUser = await User.findById(req.user?._id);
 
     if (!userToFollow) {
       return res.status(404).json({
@@ -155,7 +155,7 @@ exports.followUser = async (req, res) => {
 
 exports.updatePassword = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id).select("+password");
+    const user = await User.findById(req.user?._id).select("+password");
 
     const { oldPassword, newPassword } = req.body;
 
@@ -193,7 +193,7 @@ exports.updatePassword = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user?._id);
 
     const { name, email, avatar } = req.body;
 
@@ -230,7 +230,7 @@ exports.updateProfile = async (req, res) => {
 
 exports.deleteMyProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user?._id);
     const posts = user.posts;
     const followers = user.followers;
     const following = user.following;
@@ -313,7 +313,7 @@ exports.deleteMyProfile = async (req, res) => {
 
 exports.myProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id).populate(
+    const user = await User.findById(req.user?._id).populate(
       "posts followers following"
     );
 
@@ -331,7 +331,7 @@ exports.myProfile = async (req, res) => {
 
 exports.getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).populate(
+    const user = await User.findById(req.params?.id).populate(
       "posts followers following"
     );
 
@@ -461,7 +461,7 @@ exports.resetPassword = async (req, res) => {
 
 exports.getMyPosts = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user?._id);
 
     const posts = [];
 
