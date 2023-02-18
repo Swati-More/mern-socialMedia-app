@@ -60,7 +60,7 @@ const UserProfile = () => {
         }
       });
     }
-  }, [user, me?._id, params?.id]);
+  }, [user, me?._id, params.id]);
 
   useEffect(() => {
     if (error) {
